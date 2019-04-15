@@ -14,7 +14,7 @@ Instalação de dependências
 ----------------------------
 sudo apt-get install python3-pip
 
-pip3 install -U Flask PyMySql
+pip3 install -U Flask PyMySQL
 
 Para correr a aplicação
 -----------------------
