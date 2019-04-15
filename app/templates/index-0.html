@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}MovieStream database {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>About</h2>
+  <p>This web application illustrates the use of the MovieStream
+  database. The application is built using <a href="">Flask</a>
+  and <a href="">PyMySQL</a></p>
+  <h2>Some database statistics</h2>
+<!--
+  <p>
+  <ul>
+  <li>actors: {{ stats['NumActors'] }}</li>
+  <li>movies: {{ stats['NumMovies'] }}</li>
+  <li>streams: {{ stats['NumStreams'] }}</li>
+  </ul>
+  </p>
+-->
+  <h2>Sample functionality</h2>
+  <h3>Movies</h3>
+  <p>
+  <li>
+     <a href="/movies">List all</a>
+  </li>
+  <li>Search by title
+  <form method="get">
+    <input name="expr" id="expr" value="Spider" required>
+    <input type="submit" value="Search">
+  </form>
+  </li>
+  </p>
+
+{% endblock %}

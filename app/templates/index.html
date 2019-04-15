@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}MovieStream database {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>About</h2>
+  <p>This web application illustrates the use of the MovieStream
+  database. The application is built using <a href="http://flask.pocoo.org/">Flask</a>
+  and <a href="https://pymysql.readthedocs.io/">PyMySQL</a>.</p>
+  <h2>Some database statistics</h2>
+  <p>#movies = {{ stats.movies }}, #actors = {{ stats.actors }}, #streams = {{ stats.streams }}</p>
+  <h2>Sample functionality</h2>
+  <h3>Movies</h3>
+  <p>
+     <a href="/movies">List all</a>
+  </p>
+  <p>Get movie info:
+  <form name="mid" action="javascript:window.open('/movies/'+document.forms['mid'].elements['id'].value,'_self')">
+   Movie Id:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
+  </form>
+  </p>
+  
+  <p>Search by title:
+  <form name="msearch" action="javascript:window.open('/movies/search/'+document.forms['msearch'].elements['expr'].value,'_self')">
+    <input name="expr" id="expr" value="Spider" required/>
+    <input type="submit" value="search"/>
+  </form>
+  </p>
+
+  <h3>Actors</h3>
+  <p>
+     <a href="/actors">List all</a>
+  </p>
+  <p>Get actor info:
+  <form name="aid" action="javascript:window.open('/actors/'+document.forms['aid'].elements['id'].value,'_self')">
+   Actor Id:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
+  </form>
+  </p>
+  
+  <p>Search by name (prone to <a href="https://en.wikipedia.org/wiki/SQL_injection">SQL injection</a>!)
+  <form name="asearch" action="javascript:window.open('/actors/search/'+document.forms['asearch'].elements['expr'].value,'_self')">
+    <input name="expr" id="expr" value="Tom" required/>
+    <input type="submit" value="search"/>
+  </form>
+  </p>
+{% endblock %}

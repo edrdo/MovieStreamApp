@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Movies{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table> 
+  <tr>
+    <th><b>Id</b></th>
+    <th><b>Title</b></th>
+    <th><b>Year</b></th>
+    <th><b>Duration (m)</b></th>
+   </tr>
+   
+  {% for movie in movies %}
+    <tr>
+      <td><a href="/movies/{{ movie['MovieId'] }}">{{ movie['MovieId'] }}</a></td>
+      <td>{{ movie['Title'] }}</td>
+      <td>{{ movie['Year'] }}</td>
+      <td>{{ movie['Duration'] }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}
