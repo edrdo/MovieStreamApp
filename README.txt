@@ -16,11 +16,11 @@ sudo apt-get install python3-pip
 
 pip3 install -U Flask PyMySql
 
-Correr a aplicação
-------------------
+Para correr a aplicação
+-----------------------
 
-1) Editar configurações de acesso à BD em run.sh se necessário.
+1) Edite configurações de acesso à BD em run.sh se necessário.
 
-2) Executar "./run.sh"
+2) Execute "./run.sh"
 
 3) Aceda a http://localhost:5000
