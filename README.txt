@@ -19,7 +19,7 @@ pip3 install -U Flask PyMySql
 Correr a aplicação
 ------------------
 
-1) Editar run.sh e editar configurações de acesso à BD.
+1) Editar configurações de acesso à BD em run.sh se necessário.
 
 2) Executar "./run.sh"
 
