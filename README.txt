@@ -23,4 +23,4 @@ Para correr a aplicação
 
 2) Execute "./run.sh"
 
-3) Aceda a http://localhost:5000
+3) No seu browser aceda a http://127.0.0.1:5000
