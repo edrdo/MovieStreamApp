@@ -7,7 +7,7 @@
 {% block content %}
   <h2>Movie info</h2>
   <p>
-    <b>Id: </b>{{ movie.MovieId }}
+    <b>MovieId: </b>{{ movie.MovieId }}
   </p>
   <p>
     <b>Title: </b>{{ movie.Title }}
@@ -21,7 +21,7 @@
   <p>
     <b>Genres: </b><ul>
     {% for g in genres %}      
-      <li>{{ g.Label }}</li>
+      <li><a href="/genres/{{ g.GenreId }}">{{ g.Label }}</a></li>
     {% endfor %}
     </ul>
   </p>

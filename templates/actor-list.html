@@ -7,14 +7,12 @@
 {% block content %}
   <table> 
   <tr>
-    <th><b>Id</b></th>
     <th><b>Name</b></th>
    </tr>
    
   {% for a in actors %}
     <tr>
-      <td><a href="/actors/{{ a.ActorId }}">{{ a.ActorId }}</a></td>
-      <td>{{ a.Name }}</td>
+      <td><a href="/actors/{{ a.ActorId }}">{{ a.Name }}</a></td>
     </tr>
   {% endfor %}
   </table>

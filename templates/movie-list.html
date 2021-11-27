@@ -7,7 +7,6 @@
 {% block content %}
   <table> 
   <tr>
-    <th><b>Id</b></th>
     <th><b>Title</b></th>
     <th><b>Year</b></th>
     <th><b>Duration (m)</b></th>
@@ -15,8 +14,7 @@
    
   {% for movie in movies %}
     <tr>
-      <td><a href="/movies/{{ movie.MovieId }}">{{ movie.MovieId }}</a></td>
-      <td>{{ movie.Title }}</td>
+      <td><a href="/movies/{{ movie.MovieId }}">{{ movie.Title }}</a></td>
       <td>{{ movie.Year }}</td>
       <td>{{ movie.Duration }}</td>
     </tr>

@@ -60,7 +60,7 @@ database. The application is built using
 <p>Get actor info:
 <form name="aid" action="javascript:window.open('/actors/'+document.forms['aid'].elements['id'].value,'_self')">
    Actor Id:<input value="123" name="id" type="number" min="1"/><input type="submit" value="get"/>
-  </form>
+</form>
 </p>
   
 <p>Search by name (prone to <a href="https://en.wikipedia.org/wiki/SQL_injection">SQL injection</a>!)
@@ -68,6 +68,17 @@ database. The application is built using
     <input name="expr" id="expr" value="Tom" required/>
     <input type="submit" value="search"/>
   </form>
+</p>
+
+<h3>Genres</h3>
+<p>
+   <a href="/genres">List all</a>
+</p>
+
+<p>Get genre info:
+<form name="gid" action="javascript:window.open('/genres/'+document.forms['gid'].elements['id'].value,'_self')">
+   Genre Id:<input value="1" name="id" type="number" min="1"/><input type="submit" value="get"/>
+</form>
 </p>
 
 <h3>Staff</h3>
