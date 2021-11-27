@@ -1,40 +1,43 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}{{ movie['Title'] }} {% endblock %}</h1>
+  <h1>{% block title %}{{ movie.Title }} {% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
   <h2>Movie info</h2>
   <p>
-    <b>Id: </b>{{ movie['MovieId'] }}
+    <b>Id: </b>{{ movie.MovieId }}
   </p>
   <p>
-    <b>Title: </b>{{ movie['Title'] }}
+    <b>Title: </b>{{ movie.Title }}
   </p>
   <p>
-    <b>Year: </b>{{ movie['Year'] }}
+    <b>Year: </b>{{ movie.Year }}
   </p>
   <p>
-    <b>Duration: </b>{{ movie['Duration'] }} minutes
+    <b>Duration: </b>{{ movie.Duration }} minutes
   </p>
   <p>
     <b>Genres: </b><ul>
     {% for g in genres %}      
-      <li>{{ g['Label'] }}</li>
+      <li>{{ g.Label }}</li>
     {% endfor %}
     </ul>
   </p>
   <p>
     <b>Actors: </b><ul>
     {% for a in actors %}      
-      <li><a href="/actors/{{ a['ActorId'] }}">{{ a['Name'] }}</a></li>
+      <li><a href="/actors/{{ a.ActorId }}">{{ a.Name }}</a></li>
     {% endfor %}
   </ul></p>
+  {% if streams %}
   <p>
     <b>Streamed: </b><ul>
     {% for s in streams %}      
-      <li><a href="/streams/{{ s['StreamId'] }}">{{ s['StreamDate'] }}</a></li>
+      <li><a href="/streams/{{ s.StreamId }}">{{ s.StreamDate }}</a></li>
     {% endfor %}
   </ul></p>
+  {% endif %}
+  
 {% endblock %}

@@ -13,8 +13,8 @@
    
   {% for a in actors %}
     <tr>
-      <td><a href="/actors/{{ a['ActorId'] }}">{{ a['ActorId'] }}</a></td>
-      <td>{{ a['Name'] }}</td>
+      <td><a href="/actors/{{ a.ActorId }}">{{ a.ActorId }}</a></td>
+      <td>{{ a.Name }}</td>
     </tr>
   {% endfor %}
   </table>

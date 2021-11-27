@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Staff{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table> 
+  <tr>
+    <th><b>Name</b></th>
+    <th><b>Job</b></th>
+   </tr>
+   
+  {% for s in staff %}
+    <tr>
+      <td><a href="/staff/{{ s.StaffId }}">{{ s.Name }}</a></td>
+      <td>{{ s.Job }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}

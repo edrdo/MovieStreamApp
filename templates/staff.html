@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ staff.Name }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Staff info</h2>
+  <p>
+    <b>Id: </b>{{ staff.StaffId }}
+  </p>
+  <p>
+    <b>Name: </b>{{ staff.Name }}
+  </p>
+  <p>
+    <b>Job: </b>{{ staff.Job }}
+  </p>
+  {% if 'Name' in superv %}
+  <p>
+    <b>Supervisor 🎩: </b><a href="/staff/{{ staff.Supervisor }}">{{ superv.Name }}</a>
+  </p>
+  {% endif %}
+
+  {% if supervisees %}
+  <p>
+    <b>Supervisees 👷‍♀️👷: </b><ul>
+  {% for s  in supervisees %}      
+  <li><a href="/staff/{{ s.StaffId }}">{{ s.Name }}</a></li>
+  {% endfor %}
+  </ul>
+  </p>
+  {% endif %}
+
+
+{% endblock %}
+

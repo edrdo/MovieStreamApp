@@ -15,10 +15,10 @@
    
   {% for movie in movies %}
     <tr>
-      <td><a href="/movies/{{ movie['MovieId'] }}">{{ movie['MovieId'] }}</a></td>
-      <td>{{ movie['Title'] }}</td>
-      <td>{{ movie['Year'] }}</td>
-      <td>{{ movie['Duration'] }}</td>
+      <td><a href="/movies/{{ movie.MovieId }}">{{ movie.MovieId }}</a></td>
+      <td>{{ movie.Title }}</td>
+      <td>{{ movie.Year }}</td>
+      <td>{{ movie.Duration }}</td>
     </tr>
   {% endfor %}
   </table>

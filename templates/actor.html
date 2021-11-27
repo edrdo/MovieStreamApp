@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}{{ actor['Name'] }} {% endblock %}</h1>
+  <h1>{% block title %}{{ actor.Name }} {% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
   <h2>Actor info</h2>
   <p>
-    <b>Id: </b>{{ actor['ActorId'] }}
+    <b>Id: </b>{{ actor.ActorId }}
   </p>
   <p>
-    <b>Name: </b>{{ actor['Name'] }}
+    <b>Name: </b>{{ actor.Name }}
   </p>
   <p>
     <b>Movies: </b><ul>
     {% for m  in movies %}      
-      <li><a href="/movies/{{ m['MovieId'] }}">{{ m['Title'] }}</a></li>
+      <li><a href="/movies/{{ m.MovieId }}">{{ m.Title }}</a></li>
     {% endfor %}
     </ul>
   </p>
