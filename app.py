@@ -167,7 +167,7 @@ def view_movies_by_genre(id):
 def get_stream(id):
   stream = db.execute(
       '''
-      SELECT StreamId, StreamDate, Charge, MovieId, Title, CustomerId, Name'
+      SELECT StreamId, StreamDate, Charge, MovieId, Title, CustomerId, Name
       FROM STREAM NATURAL JOIN MOVIE NATURAL JOIN CUSTOMER 
       WHERE StreamId = %s
       ''', id).fetchone()
