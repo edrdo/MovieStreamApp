@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Genres{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table> 
+  <tr>
+    <th><b>Label</b></th>
+  </tr>
+  {% for g in genres %}
+    <tr>
+      <td><a href="/genres/{{ g.GenreId }}">{{ g.Label }}</a></td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}
