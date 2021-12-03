@@ -2,7 +2,6 @@ import logging
 import pymysql
 import re
 
-
 # Change this if necessary
 CONFIG = {
   'DB': 'movie_stream',
