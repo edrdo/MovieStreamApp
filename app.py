@@ -19,6 +19,12 @@ def index():
     logging.info(stats)
     return render_template('index.html',stats=stats)
 
+# Initialize db
+# It assumes a script called db.sql is stored in the sql folder
+@APP.route('/init/')
+def init(): 
+    return render_template('init.html', init=db.init())
+
 # Movies
 @APP.route('/movies/')
 def list_movies():
