@@ -16,9 +16,19 @@ Aplicação Python demonstrando o acesso à BD MovieStream
 
 # Instalação de dependências
 
+## Python 3 e pip 
+
+Deve ter o Python 3 e o gestor de pacotes pip instalado. Pode
+instalar os mesmos em Ubuntu por exemplo usando:
+
 ```
-sudo apt-get install python3-pip
-pip3 install -U Flask==1.1.4 PyMySQL
+sudo apt-get install python3 python3-pip
+```
+
+## Bibliotecas Python
+
+```
+pip3 install --user Flask==1.1.4 PyMySQL==1.0.2 cryptography==36.0.0
 ```
 
 

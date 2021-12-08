@@ -61,6 +61,7 @@ def init():
            shell=True,
            universal_newlines=True,
            stdin=input_stream,
+           text=True,
            stdout=subprocess.PIPE,
            stderr=subprocess.PIPE)
       result.mysql_command = command
