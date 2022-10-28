@@ -1,8 +1,6 @@
 
 # Sumário
 
-[__Bases de Dados (CC2005), DCC/FCUP__](https://www.dcc.fc.up.pt/~edrdo/aulas/bd)
-
 [Eduardo R. B. Marques](https://www.dcc.fc.up.pt/~edrdo/), DCC/FCUP
 
 Aplicação Python demonstrando o acesso à BD MovieStream
