@@ -19,12 +19,6 @@ def index():
     logging.info(stats)
     return render_template('index.html',stats=stats)
 
-# Initialize db
-# It assumes a script called db.sql is stored in the sql folder
-@APP.route('/init/')
-def init(): 
-    return render_template('init.html', init=db.init())
-
 # Movies
 @APP.route('/movies/')
 def list_movies():
@@ -105,7 +99,7 @@ def view_movies_by_actor(id):
     '''
     SELECT ActorId, Name
     FROM ACTOR 
-    WHERE actorId = %s
+    WHERE ActorId = %s
     ''', id).fetchone()
 
   if actor is None:
@@ -115,7 +109,7 @@ def view_movies_by_actor(id):
     '''
     SELECT MovieId, Title
     FROM MOVIE NATURAL JOIN MOVIE_ACTOR
-    WHERE actorId = %s
+    WHERE ActorId = %s
     ORDER BY Title
     ''', id).fetchall()
 
@@ -129,7 +123,7 @@ def search_actor(expr):
   actors = db.execute(
       ' SELECT ActorId, Name'
       ' FROM ACTOR '
-      ' WHERE NAME LIKE \'%' + expr + '%\''
+      ' WHERE Name LIKE \'%' + expr + '%\''
     ).fetchall()
 
   return render_template('actor-search.html', 
@@ -221,7 +215,7 @@ def show_staff(id):
   supervisees = db.execute(
     '''
       SELECT StaffId, Name from staff
-      where supervisor = %s
+      where Supervisor = %s
       ORDER BY Name
     ''',id).fetchall()
 
