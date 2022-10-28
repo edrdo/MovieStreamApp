@@ -1,7 +1,7 @@
 import logging
 import pymysql
 import re
-import subprocess
+
 
 # Change this if necessary
 CONFIG = {
@@ -32,41 +32,9 @@ def connect():
 def execute(sql,args=None):
   global DB
   sql = re.sub('\s+',' ', sql)
-  print(sql)
   logging.info('SQL: {} Args: {}'.format(sql,args))
   DB._cursor_.execute(sql, args)
   return DB._cursor_
-
-def commit():
-  global DB
-  DB.commit()
-
-def rollback():
-  global DB
-  DB.rollback()
-
-def init():
-    sql_file = 'sql/db.sql'
-    command  = 'mysql -v -u{} -p{} --execute="source {};" --host={} --port={} {}'.format(
-                       CONFIG['USER'], 
-                       CONFIG['PASSWORD'],
-                       sql_file,
-                       CONFIG['HOST'], 
-                       CONFIG['PORT'], 
-                       CONFIG['DB'])
-    logging.info('Initialisation command: "{}"'.format(command))
-    with open(sql_file, 'r') as input_stream:
-      result = subprocess.run(
-           command,
-           shell=True,
-           universal_newlines=True,
-           stdin=input_stream,
-           text=True,
-           stdout=subprocess.PIPE,
-           stderr=subprocess.PIPE)
-      result.mysql_command = command
-      result.sql_file = sql_file
-      return result
 
 def close():
   global DB
