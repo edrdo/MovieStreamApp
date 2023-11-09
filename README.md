@@ -7,7 +7,7 @@ Aplicação Python demonstrando o acesso à BD MovieStream
 
 #  Referência
 
-- [PyMySQL](https://pymysql.readthedocs.io/)
+- [sqlite3](https://docs.python.org/3/library/sqlite3.html)
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 - [Jinja templates](https://jinja.palletsprojects.com/en/3.0.x/)
 
@@ -26,32 +26,9 @@ sudo apt-get install python3 python3-pip
 ## Bibliotecas Python
 
 ```
-pip3 install --user Flask==1.1.4 PyMySQL==1.0.2 cryptography==36.0.0
+pip3 install Flask 
 ```
 
-
-# Configuração da BD
-
-Edite o ficheiro `db.py` no que se refere à configuração da sua BD, modificando os parâmetros `DB` (nome da base de dados), `USER` (nome do utilizador) e `PASSWORD` (senha do utilizador).
-
-Teste o acesso executando:
-
-```
-python3 test_db_connection.py NOME_DE_UMA_TABELA
-```
-
-Se a configuração do acesso à BD estiver correcto, deverá ser listado o conteúdo da tabela `NOME_DE_UMA_TABELA`, por ex. a tabela `REGION` da BD MovieStream:
-
-```
-$ python3 test_db.py REGION
-SELECT * FROM REGION
-5 results ...
-{'RegionId': 6, 'Name': 'Other countries', 'RegionManager': 17}
-{'RegionId': 7, 'Name': 'America', 'RegionManager': 16}
-{'RegionId': 8, 'Name': 'Asia', 'RegionManager': 15}
-{'RegionId': 9, 'Name': 'Europe', 'RegionManager': 17}
-{'RegionId': 10, 'Name': 'Africa', 'RegionManager': 15}
-```
 
 # Execução
 
@@ -67,10 +44,7 @@ $ python3 server.py
    Use a production WSGI server instead.
  * Debug mode: off
 2021-11-27 15:07:33 - INFO -  * Running on http://0.0.0.0:9001/ (Press CTRL+C to quit)
-SELECT COUNT(*) AS movies FROM MOVIE
-2021-11-27 15:07:37 - INFO - SQL: SELECT COUNT(*) AS movies FROM MOVIE Args: None
-SELECT COUNT(*) AS actors FROM ACTOR
-2021-11-27 15:07:37 - INFO - SQL: SELECT COUNT(*) AS actors FROM ACTOR Args: None
+...
 ```
 
 

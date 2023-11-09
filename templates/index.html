@@ -8,7 +8,7 @@
 <h2>About</h2>
 <p>This web application illustrates the use of the MovieStream
 database. The application is built using 
-<a href="https://pymysql.readthedocs.io/">PyMySQL</a>,
+<a href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a>,
 <a href="https://flask.palletsprojects.com">Flask</a>, and
 <a href="https://jinja.palletsprojects.com">Jinja</a>.
 </p>
@@ -21,15 +21,31 @@ database. The application is built using
 </tr>
 <tr>
   <td>Movies</td>
-  <td>{{ stats.movies }}</td>
+  <td>{{ stats.n_movies }}</td>
 </tr>
 <tr>
-  <td>Actors</td>
-  <td>{{ stats.actors }}</td>
+  <td>Actors in movies</td>
+  <td>{{ stats.n_actors }}</td>
+</tr>
+<tr>
+  <td>Movie genres</td>
+  <td>{{ stats.n_genres }}</td>
 </tr>
 <tr>
   <td>Streams</td>
-  <td>{{ stats.streams }}</td>
+  <td>{{ stats.n_streams }}</td>
+</tr>
+<tr>
+  <td>Customers</td>
+  <td>{{ stats.n_customers }}</td>
+</tr>
+<tr>
+  <td>Countries</td>
+  <td>{{ stats.n_countries }}</td>
+</tr>
+<tr>
+  <td>Regions</td>
+  <td>{{ stats.n_regions }}</td>
 </tr>
 </table>
 

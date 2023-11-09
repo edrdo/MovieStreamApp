@@ -1,43 +1,29 @@
 import logging
-import pymysql
+import sqlite3
 import re
 
 
-# Change this if necessary
-CONFIG = {
-  'DB': 'movie_stream',
-  'USER': 'guest',
-  'PASSWORD': 'guest',
-  'HOST': '127.0.0.1',
-  'PORT': 3306,
-  'CHARSET': 'utf8'
-}
-
 global DB
-DB = None
+DB = dict()
 
 def connect():
   global DB
-  c = pymysql.connect(db=CONFIG['DB'],
-                       user=CONFIG['USER'], 
-                       password=CONFIG['PASSWORD'],
-                       host=CONFIG['HOST'], 
-                       port=CONFIG['PORT'],
-                       charset=CONFIG['CHARSET'],
-                       cursorclass=pymysql.cursors.DictCursor)
-  c._cursor_ = c.cursor()
-  DB = c
-  logging.info('Connected to database %s' % CONFIG['DB'])
+  c = sqlite3.connect('movie_stream.db', check_same_thread=False)
+  c.row_factory = sqlite3.Row
+  # lambda cursor,row:  \
+  #   { col[0]: row[idx] for idx,col in enumerate(cursor.description) }
+  DB['conn'] = c
+  DB['cursor'] = c.cursor()
+  logging.info('Connected to database')
 
 def execute(sql,args=None):
   global DB
   sql = re.sub('\s+',' ', sql)
   logging.info('SQL: {} Args: {}'.format(sql,args))
-  DB._cursor_.execute(sql, args)
-  return DB._cursor_
+  return DB['cursor'].execute(sql, args) \
+      if args != None else DB['cursor'].execute(sql)
 
 def close():
   global DB
-  DB._cursor_.close()
-  DB.close()
+  DB['conn'].close()
 

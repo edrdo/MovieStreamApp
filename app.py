@@ -10,12 +10,24 @@ APP = Flask(__name__)
 @APP.route('/')
 def index():
     stats = {}
-    x = db.execute('SELECT COUNT(*) AS movies FROM MOVIE').fetchone()
-    stats.update(x)
-    x = db.execute('SELECT COUNT(*) AS actors FROM ACTOR').fetchone()
-    stats.update(x)
-    x = db.execute('SELECT COUNT(*) AS streams FROM STREAM').fetchone()
-    stats.update(x)
+    stats = db.execute('''
+    SELECT * FROM
+      (SELECT COUNT(*) n_movies FROM MOVIE)
+    JOIN
+      (SELECT COUNT(*) n_actors FROM ACTOR)
+    JOIN
+      (SELECT COUNT(*) n_genres FROM MOVIE_GENRE)
+    JOIN 
+      (SELECT COUNT(*) n_streams FROM STREAM)
+    JOIN 
+      (SELECT COUNT(*) n_customers FROM CUSTOMER)
+    JOIN 
+      (SELECT COUNT(*) n_countries FROM COUNTRY)
+    JOIN 
+      (SELECT COUNT(*) n_regions FROM REGION)
+    JOIN 
+      (SELECT COUNT(*) n_staff FROM STAFF)
+    ''').fetchone()
     logging.info(stats)
     return render_template('index.html',stats=stats)
 
@@ -37,8 +49,8 @@ def get_movie(id):
       '''
       SELECT MovieId, Title, Year, Duration 
       FROM MOVIE 
-      WHERE movieId = %s
-      ''', id).fetchone()
+      WHERE movieId = ?
+      ''', [id]).fetchone()
 
   if movie is None:
      abort(404, 'Movie id {} does not exist.'.format(id))
@@ -47,25 +59,25 @@ def get_movie(id):
       '''
       SELECT GenreId, Label 
       FROM MOVIE_GENRE NATURAL JOIN GENRE 
-      WHERE movieId = %s 
+      WHERE movieId = ? 
       ORDER BY Label
-      ''', id).fetchall()
+      ''', [id]).fetchall()
 
   actors = db.execute(
       '''
       SELECT ActorId, Name
       FROM MOVIE_ACTOR NATURAL JOIN ACTOR
-      WHERE MovieId = %s
+      WHERE MovieId = ?
       ORDER BY Name
-      ''', id).fetchall()
+      ''', [id]).fetchall()
 
   streams = db.execute(
       ''' 
       SELECT StreamId, StreamDate
       FROM STREAM
-      WHERE MovieId = %s
+      WHERE MovieId = ?
       ORDER BY StreamDate Desc
-      ''', id).fetchall();
+      ''', [id]).fetchall();
   return render_template('movie.html', 
            movie=movie, genres=genres, actors=actors, streams=streams)
 
@@ -77,8 +89,8 @@ def search_movie(expr):
       ''' 
       SELECT MovieId, Title
       FROM MOVIE 
-      WHERE Title LIKE %s
-      ''', expr).fetchall()
+      WHERE Title LIKE ?
+      ''', [expr]).fetchall()
   return render_template('movie-search.html',
            search=search,movies=movies)
 
@@ -99,8 +111,8 @@ def view_movies_by_actor(id):
     '''
     SELECT ActorId, Name
     FROM ACTOR 
-    WHERE ActorId = %s
-    ''', id).fetchone()
+    WHERE ActorId = ?
+    ''', [id]).fetchone()
 
   if actor is None:
      abort(404, 'Actor id {} does not exist.'.format(id))
@@ -109,9 +121,9 @@ def view_movies_by_actor(id):
     '''
     SELECT MovieId, Title
     FROM MOVIE NATURAL JOIN MOVIE_ACTOR
-    WHERE ActorId = %s
+    WHERE ActorId = ?
     ORDER BY Title
-    ''', id).fetchall()
+    ''', [id]).fetchall()
 
   return render_template('actor.html', 
            actor=actor, movies=movies)
@@ -145,8 +157,8 @@ def view_movies_by_genre(id):
     '''
     SELECT GenreId, Label
     FROM GENRE 
-    WHERE GenreId = %s
-    ''', id).fetchone()
+    WHERE GenreId = ?
+    ''', [id]).fetchone()
 
   if genre is None:
      abort(404, 'Genre id {} does not exist.'.format(id))
@@ -155,9 +167,9 @@ def view_movies_by_genre(id):
     '''
     SELECT MovieId, Title
     FROM MOVIE NATURAL JOIN MOVIE_GENRE
-    WHERE GenreId = %s
+    WHERE GenreId = ?
     ORDER BY Title
-    ''', id).fetchall()
+    ''', [id]).fetchall()
 
   return render_template('genre.html', 
            genre=genre, movies=movies)
@@ -169,8 +181,8 @@ def get_stream(id):
       '''
       SELECT StreamId, StreamDate, Charge, MovieId, Title, CustomerId, Name
       FROM STREAM NATURAL JOIN MOVIE NATURAL JOIN CUSTOMER 
-      WHERE StreamId = %s
-      ''', id).fetchone()
+      WHERE StreamId = ?
+      ''', [id]).fetchone()
 
   if stream is None:
      abort(404, 'Stream id {} does not exist.'.format(id))
@@ -198,8 +210,8 @@ def show_staff(id):
     '''
     SELECT StaffId, Name, Supervisor, Job
     FROM STAFF
-    WHERE staffId = %s
-    ''', id).fetchone()
+    WHERE staffId = ?
+    ''', [id]).fetchone()
 
   if staff is None:
      abort(404, 'Staff id {} does not exist.'.format(id))
@@ -209,15 +221,15 @@ def show_staff(id):
       '''
       SELECT Name
       FROM staff
-      WHERE staffId = %s
-      ''', staff['Supervisor']).fetchone()
+      WHERE staffId = ?
+      ''', [staff['Supervisor']]).fetchone()
   supervisees = []
   supervisees = db.execute(
     '''
       SELECT StaffId, Name from staff
-      where Supervisor = %s
+      where Supervisor = ?
       ORDER BY Name
-    ''',id).fetchall()
+    ''',[id]).fetchall()
 
   return render_template('staff.html', 
            staff=staff, superv=superv, supervisees=supervisees)
