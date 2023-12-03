@@ -9,5 +9,5 @@ if __name__ == '__main__':
   data = db.execute('SELECT * FROM ' + sys.argv[1]).fetchall()
   print("%d results ..." % len(data))
   for d in data: 
-     print(d)
+     print([ (c,d[c]) for c in d.keys()]) 
   db.close()
