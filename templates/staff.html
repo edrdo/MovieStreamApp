@@ -1,11 +1,6 @@
 {% extends 'base.html' %}
-
-{% block header %}
-  <h1>{% block title %}{{ staff.Name }} {% endblock %}</h1>
-{% endblock %}
-
 {% block content %}
-  <h2>Staff info</h2>
+  <h2>{{ staff.Name }}</h2>
   <p>
     <b>StaffId: </b>{{ staff.StaffId }}
   </p>
@@ -25,7 +20,9 @@
   <p>
     <b>Supervisees 👷‍♀️👷: </b><ul>
   {% for s  in supervisees %}      
-  <li><a href="/staff/{{ s.StaffId }}">{{ s.Name }}</a></li>
+  <li>
+    <a href="/staff/{{ s.StaffId }}">{{ s.Name }}</a>
+  </li>
   {% endfor %}
   </ul>
   </p>

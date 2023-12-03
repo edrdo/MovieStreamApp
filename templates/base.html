@@ -1,12 +1,9 @@
 <!doctype html>
-<title>{% block title %}{% endblock %}</title>
+<title>Flask application</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <nav>
   <a href="/">Home</a>
 </nav>
 <section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
   {% block content %}{% endblock %}
 </section>

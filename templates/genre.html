@@ -1,22 +1,20 @@
 {% extends 'base.html' %}
-
-{% block header %}
-  <h1>{% block title %}{{ genre.Label }} {% endblock %}</h1>
-{% endblock %}
-
 {% block content %}
-  <h2>Genre info</h2>
-  <p>
-    <b>GenreId: </b>{{ genre.GenreId }}
-  </p>
-  <p>
-    <b>Label: </b>{{ genre.Label }}
-  </p>
-  <p>
-    <b>Movies: </b><ul>
-    {% for m  in movies %}      
-      <li><a href="/movies/{{ m.MovieId }}">{{ m.Title }}</a></li>
-    {% endfor %}
-    </ul>
-  </p>
+<h1>{{ genre.Label }} genre</h1>
+<p>
+  <b>GenreId: </b>{{ genre.GenreId }}
+</p>
+<p>
+  <b>Label: </b>{{ genre.Label }}
+</p>
+<p>
+  <b>Movies: </b>
+<ul>
+  {% for m in movies %}
+  <li>
+    <a href="/movies/{{ m.MovieId }}">{{ m.Title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+</p>
 {% endblock %}

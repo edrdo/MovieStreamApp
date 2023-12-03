@@ -1,30 +1,35 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Staff{% endblock %}</h1>
-{% endblock %}
-
 {% block content %}
-  <table> 
+<h1>Staff</h1>
+<table>
   <tr>
-    <th><b>Name</b></th>
-    <th><b>Job</b></th>
-    <th><b>Supervisor</b></th>
-   </tr>
-   
+    <th>
+      <b>Name</b>
+    </th>
+    <th>
+      <b>Job</b>
+    </th>
+    <th>
+      <b>Supervisor</b>
+    </th>
+  </tr>
   {% for s in staff %}
-    <tr>
-      <td><a href="/staff/{{ s.StaffId }}">{{ s.Name }}</a></td>
-      <td>{{ s.Job }}</td>
-      <td>
+  <tr>
+    <td>
+      <a href="/staff/{{ s.StaffId }}">{{ s.Name }}</a>
+    </td>
+    <td>
+      {{ s.Job }}
+    </td>
+    <td>
       {% if s.Supervisor %}
-         <a href="/staff/{{ s.Supervisor }}">{{ s.SupervisorName }}</a>
+      <a href="/staff/{{ s.Supervisor }}">{{ s.SupervisorName }}</a>
       {% else %}
-         N/A
+      N/A
       {% endif %}
-      </td>
-
-    </tr>
+    </td>
+  </tr>
   {% endfor %}
-  </table>
+</table>
 {% endblock %}
