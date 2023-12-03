@@ -26,7 +26,7 @@ sudo apt-get install python3 python3-pip
 ## Bibliotecas Python
 
 ```
-pip3 install Flask 
+pip3 install --user Flask 
 ```
 
 
