@@ -5,6 +5,8 @@
 
 Aplicação Python demonstrando o acesso à BD MovieStream
 
+[Veja também slides usados nas aulas.](./slides.pdf)
+
 #  Referência
 
 - [sqlite3](https://docs.python.org/3/library/sqlite3.html)
