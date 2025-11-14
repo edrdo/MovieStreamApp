@@ -1,7 +1,7 @@
 
 # Sumário
 
-[Eduardo R. B. Marques](https://www.dcc.fc.up.pt/~edrdo/), DCC/FCUP
+Autoria: [Eduardo R. B. Marques](https://www.dcc.fc.up.pt/~edrdo/), DCC/FCUP
 
 Aplicação Python demonstrando o acesso à BD MovieStream
 
